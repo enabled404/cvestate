@@ -1,0 +1,47 @@
+name: API / Data Source Issue
+description: An external API is returning unexpected results, failing, or has changed
+title: "[API]: "
+labels: ["api", "triage"]
+body:
+  - type: dropdown
+    id: api
+    attributes:
+      label: Affected API
+      options:
+        - NVD (nvd.nist.gov)
+        - EPSS (api.first.org)
+        - CISA KEV
+        - OSV.dev
+        - GitHub Advisories
+        - AbuseIPDB
+        - GreyNoise
+        - Shodan
+        - VirusTotal
+        - MalwareBazaar
+        - ThreatFox
+        - Ransomwhere
+        - URLScan.io
+        - CIRCL Passive DNS
+        - MITRE ATT&CK
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What is the issue?
+    validations:
+      required: true
+
+  - type: input
+    id: http_status
+    attributes:
+      label: HTTP status code (if applicable)
+      placeholder: "e.g. 401, 429, 404"
+
+  - type: textarea
+    id: error_response
+    attributes:
+      label: Error response body (redact any API keys)
+      render: json

@@ -1,0 +1,40 @@
+name: Feature Request
+description: Suggest a new tool, API integration, or enhancement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What would you like to see?
+      description: A clear summary of the feature or enhancement
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: What security use case does this solve?
+      description: Describe the workflow or investigation scenario this would improve
+    validations:
+      required: true
+
+  - type: textarea
+    id: api
+    attributes:
+      label: Which API or data source would this use?
+      description: If you have a specific data source in mind, describe it here
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Tool category
+      options:
+        - Core Vulnerability Intelligence
+        - Exploit & ATT&CK Intelligence
+        - Risk Scoring & Reporting
+        - Network Intelligence
+        - Threat Intelligence
+        - DevSecOps
+        - Infrastructure (caching, rate limiting, etc.)
+        - Other

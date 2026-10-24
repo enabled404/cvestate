@@ -1,0 +1,55 @@
+# Keep the Docker build context small and the image clean/reproducible.
+# Anything not needed to resolve dependencies or run the server is excluded.
+
+# Local virtual environment (rebuilt inside the image by uv)
+.venv/
+venv/
+ENV/
+
+# Version control metadata
+.git/
+.gitignore
+.gitattributes
+
+# Python bytecode / build caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.cache/
+
+# Secrets and local environment config (never bake into an image)
+.env
+.env.*
+*.env
+
+# Tests and test fixtures (not needed at runtime; installed via --no-dev anyway)
+tests/
+
+# Project assets / docs not required to run the server
+assets/
+
+# Editor / OS cruft
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Docker files themselves
+Dockerfile
+.dockerignore
+
+# Local runtime artifacts (cache DB, audit logs)
+*.sqlite
+*.sqlite3
+*.db
+*.log

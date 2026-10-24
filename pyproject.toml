@@ -1,0 +1,82 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cvestate"
+version = "1.0.0"
+description = "CVEstate: an MCP security-intelligence server (32 tools across NVD, EPSS, CISA KEV, OSV and 20+ more APIs) plus Watchtower, a persistent estate watch that tracks what changed against the software you actually run: new KEV listings, EPSS spikes, and fresh CVEs against installed versions."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [
+    { name = "Saad Khalid", email = "enabled404@github" },
+    { name = "Mahipal Jangra", email = "mukul975@github" },
+]
+keywords = ["mcp", "security", "cve", "vulnerability", "threat-intelligence", "claude", "kev", "epss", "sbom", "watchtower"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+]
+dependencies = [
+    "mcp[cli]>=1.7.0,<2.0.0",
+    "httpx>=0.27.0",
+    "aiosqlite>=0.20.0",
+    "cvss>=3.0",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0",
+    "defusedxml>=0.7.1",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "anyio[trio]>=4.0",
+    "respx>=0.21",
+    "pytest-httpx>=0.30",
+]
+
+[project.scripts]
+cve-mcp = "cve_mcp.server:main"
+cve-watch = "cve_mcp.watchtower.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/enabled404/cvestate"
+Repository = "https://github.com/enabled404/cvestate"
+Issues = "https://github.com/enabled404/cvestate/issues"
+Changelog = "https://github.com/enabled404/cvestate/blob/main/CHANGELOG.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cve_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+markers = [
+    "offline: test uses no network calls (mocked)",
+    "online: test makes live API calls (requires keys)",
+]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501", "E402"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+warn_return_any = true
+warn_unused_ignores = true

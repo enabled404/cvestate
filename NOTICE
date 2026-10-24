@@ -1,0 +1,30 @@
+CVEstate
+========
+
+CVEstate builds on the CVE MCP Server (Apache-2.0, Copyright Mahipal
+Jangra / mukul975) and extends it with the Watchtower estate-watch
+system.
+
+The foundation library — the 28 security-intelligence MCP tools, the
+triage_cve orchestrator, the composite risk scorer, and the API
+clients for NVD, EPSS, CISA KEV, OSV, and the other intelligence
+sources — originates from the CVE MCP Server,
+https://github.com/mukul975/cve-mcp-server, Copyright Mahipal Jangra,
+licensed under the Apache License, Version 2.0. The full license text
+is in the LICENSE file at the root of this distribution, and it
+applies to the whole tree, including the new Watchtower package.
+
+Watchtower — the persistent estate store, the SBOM and lockfile
+parsers, the snapshot and diff engines, the delta brief, the four
+Watchtower MCP tools (estate_add, estate_scan, watch_diff,
+watch_brief), and the cve-watch CLI — is the new work shipped in
+CVEstate 1.0.0, released under the same Apache License, Version 2.0.
+
+CVEstate 1.0.0 also carries a packaging repair contributed by this
+release: the mcp dependency is pinned to the 1.x line
+(mcp[cli]>=1.7.0,<2.0.0), the fix the upstream project's own
+dependabot branch proposed, so a fresh install starts the server
+instead of crashing on import against mcp 2.x.
+
+No copyright notices from the original work have been removed or
+altered.

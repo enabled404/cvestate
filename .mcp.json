@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "cvestate": {
+      "args": [
+        "-m",
+        "cve_mcp.server"
+      ],
+      "command": "python",
+      "cwd": ".",
+      "env": {
+        "AUDIT_LOG_PATH": "",
+        "MAX_RETRIES": "3",
+        "NVD_API_KEY": "",
+        "REQUEST_TIMEOUT": "30"
+      }
+    }
+  }
+}
